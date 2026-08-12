@@ -1,101 +1,112 @@
-# Spam Email Classification System
+# Spam Email Detection
 
-A production-grade machine learning system designed to robustly classify emails as "Spam" or "Ham" (legitimate). This project features a modular pipeline architecture for training and inference, integrated with a modern Streamlit user interface for easy interaction.
+## Overview
 
-## 🚀 Key Features
+An end-to-end machine learning project for classifying emails as spam or non-spam using natural language processing and supervised machine learning.
 
-- **Advanced ML Pipeline**: Modular design separating data ingestion, transformation, and model training.
-- **Multiple Model Support**: evaluation of various algorithms including SVM, Logistic Regression, Decision Trees, and Random Forest.
-- **Interactive Web UI**: Built with Streamlit for real-time single-email analysis and batch processing.
-- **MBOX Support**: Native capability to process and classify entire `mbox` email archives.
-- **Detailed Analytics**: Comprehensive logging and performance metrics (Precision, Recall, F1-Score).
+The project covers data ingestion, text preprocessing, feature transformation, model training, model evaluation, and deployment through a Flask application.
 
-## 🛠️ Tech Stack
+## Dataset
 
-- **Language**: Python 3.10+
-- **Frontend**: Streamlit
-- **ML Framework**: Scikit-learn
-- **Data Processing**: Pandas, NumPy, BeautifulSoup4
-- **Project Management**: `uv` (recommended) or `pip`
+The project uses a labeled email dataset containing examples of spam and non-spam messages.
 
-## 📂 Project Structure
+The text data is transformed into numerical features before being provided to the machine learning model.
 
-```
-├── app.py                  # Main Streamlit Web Application
-├── requirements.txt        # Project dependencies
-├── main.py                 # (Optional) Alternative entry point
+## Machine Learning Workflow
+
+The project follows the following workflow:
+
+1. Data ingestion
+2. Data preprocessing
+3. Text feature extraction
+4. Model training
+5. Model evaluation
+6. Prediction pipeline
+7. Flask-based deployment
+
+## Text Processing
+
+Email text is processed and transformed into numerical features using a feature extraction pipeline before being passed to the trained machine learning model.
+
+The trained feature transformation object is stored in:
+
+```text
+data/models/v1/feature.pkl
+Model
+
+The trained machine learning model is stored in:
+
+data/models/v1/model.pkl
+
+The prediction pipeline loads the trained model and feature transformation components to classify new email messages.
+
+Technologies
+Python
+Pandas
+NumPy
+Scikit-learn
+Natural Language Processing
+Flask
+Project Structure
+Spam-Email-Detection/
+│
+├── data/
+│   ├── dataset/
+│   │   └── dataset.csv
+│   └── models/
+│       └── v1/
+│           ├── feature.pkl
+│           └── model.pkl
+│
+├── Notebook Experiments/
+│   └── Spam Email Detection.ipynb
+│
 ├── src/
-│   ├── components/         # Core processing modules (Ingestion, Transformation)
-│   ├── pipeline/           # Orchestration pipelines (Training, Prediction)
-│   ├── config/             # Configuration and parameters
-│   └── utils/              # Helper functions, logging, and state management
-├── data/                   # Dataset storage (inputs)
-├── outputs/                # Training artifacts (models, vectorizers)
-└── logs/                   # System runtime logs
-```
+│   ├── components/
+│   ├── config/
+│   ├── pipeline/
+│   └── utils/
+│
+├── app.py
+├── pyproject.toml
+├── requirements.txt
+├── README.md
+└── LICENSE
+Installation
 
-## ⚡ Installation
+Clone the repository:
 
-1. **Clone the Repository**
-   ```bash
-   git clone <repository_url>
-   cd Spam-Email-Detection
-   ```
+git clone https://github.com/sayon009/machine-learning-projects.git
 
-2. **Set up Environment**
-   It is recommended to use a virtual environment.
-   ```bash
-   python -m venv .venv
-   source .venv/bin/activate  # On Windows: .venv\Scripts\activate
-   ```
+Navigate to the project:
 
-3. **Install Dependencies**
-   ```bash
-   pip install -r requirements.txt
-   ```
+cd machine-learning-projects/Spam-Email-Detection
 
-## 🖥️ Usage
+Install the dependencies:
 
-### 1. Running the Web Application
-Launch the interactive dashboard to classify emails instantly.
+pip install -r requirements.txt
+Running the Application
 
-```bash
-streamlit run app.py
-```
+Start the Flask application:
 
-- **Single Email Tab**: Paste email content to get an immediate Spam/Ham prediction with a confidence score.
-- **Batch Processing Tab**: Upload an `.mbox` file to process multiple emails at once and download the results as a CSV.
+python app.py
 
-### 2. Training the Model
-(Optional) If you wish to retrain the models on new data:
+The application can then be accessed through the local Flask server.
 
-1. Place your dataset in `data/dataset/dataset.csv`.
-2. Run the training pipeline:
-   ```bash
-   python -m src.pipeline.training_pipeline
-   ```
-3. Artifacts (Model & Vectorizer) will be saved in the `outputs/` directory.
-4. **Important**: Update `src/config/config.py` with the new paths to your generated model and vectorizer if they change.
+Running the Notebook
 
-## ⚙️ Configuration
+Open:
 
-The system is highly configurable via `src/config/config.py`. You can adjust:
-- Model hyperparameters (Grid Search configuration)
-- Input/Output paths
-- Training parameters (Cross-validation folds, etc.)
+Notebook Experiments/Spam Email Detection.ipynb
 
-## 📊 Model Performance
+The notebook contains the data analysis, preprocessing, feature transformation, model training, and evaluation workflow.
 
-The pipeline automatically evaluates models using 5-fold cross-validation. Metrics including Accuracy, Precision, Recall, and F1-Score are logged for each experiment. By default, the system selects the best performing model (often SVM or Random Forest) for inference.
+Note
 
-## 🤝 Contributing
+This project is maintained as part of a machine learning learning and portfolio collection. The implementation is based on an existing open-source project and is being studied and extended for educational purposes.
 
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+License
 
-## 📝 License
+See the LICENSE file for license information.
 
-Distributed under the MIT License. See `LICENSE` for more information.
+
